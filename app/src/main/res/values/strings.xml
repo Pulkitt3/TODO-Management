@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">TODO APP</string>
+    <string name="headline">Task List</string>
+    <string name="add_a_task">Add a task</string>
+    <string name="task_title">Task Title</string>
+    <string name="time">Time</string>
+    <string name="cancel">  Cancel  </string>
+    <string name="add">Add</string>
+    <string name="pm">PM</string>
+    <string name="am">AM</string>
+    <string name="update">Update</string>
+    <string name="please_select_greater_than_current_time">Please select greater than current time</string>
+    <string name="successfully_added">Successfully added!</string>
+    <string name="please_fill_out_all_fields">Please fill out all fields.</string>
+    <string name="warning">Warning</string>
+    <string name="delete_header_start">Do you want to delete</string>
+    <string name="delete_header_end">,this action can\'t be undone.</string>
+    <string name="sort_am">Sort by AM</string>
+    <string name="sort_pm">Sort by PM</string>
+    <string name="sort_za">Sort by Z-A</string>
+    <string name="sort_az">Sort by A-Z</string>
+    <string name="sort_clear">Clear filter</string>
+</resources>

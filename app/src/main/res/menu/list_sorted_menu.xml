@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_sort_am"
+        android:title="@string/sort_am"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_sort_pm"
+        android:title="@string/sort_pm" />
+    <item
+        android:id="@+id/menu_sort_az"
+        android:title="@string/sort_az" />
+    <item
+        android:id="@+id/menu_sort_za"
+        android:title="@string/sort_za" />
+
+
+</menu>
