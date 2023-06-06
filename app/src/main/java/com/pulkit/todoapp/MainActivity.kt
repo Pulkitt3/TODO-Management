@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -60,7 +59,6 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_sort_today -> {
-                Log.d("currentdate", "onOptionsItemSelected: "+Utils.getCurrentDate()+"%")
                 todoViewModel.getItemsSortedByDay(Utils.getCurrentDate()+"%")
                 todoViewModel.itemsSortedByDay.observe(this) {
                     todoViewModel.checkIfDatabaseEmpty(it)
@@ -182,7 +180,6 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnItemClickListener {
                     tvToDate.text.toString().trim()
                 )
                 todoViewModel.itemsSortedByRange.observe(this) {
-                    Log.d("itemsSortedByRange", "onOptionsItemSelected: " + Gson().toJson(it))
                     todoViewModel.checkIfDatabaseEmpty(it)
                     adapter.setItems(it)
                 }
