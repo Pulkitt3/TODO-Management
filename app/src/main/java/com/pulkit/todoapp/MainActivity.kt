@@ -60,9 +60,11 @@ class MainActivity : AppCompatActivity(), ToDoAdapter.OnItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_sort_today -> {
-                todoViewModel.getItemsSortedByDay(Utils.getCurrentDate())
+                Log.d("currentdate", "onOptionsItemSelected: "+Utils.getCurrentDate()+"%")
+                todoViewModel.getItemsSortedByDay(Utils.getCurrentDate()+"%")
                 todoViewModel.itemsSortedByDay.observe(this) {
                     todoViewModel.checkIfDatabaseEmpty(it)
+
                     adapter.setItems(it)
                 }
                 true

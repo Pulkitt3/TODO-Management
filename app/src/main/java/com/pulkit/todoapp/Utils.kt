@@ -140,7 +140,7 @@ class Utils {
         }
 
         fun getCurrentDate(): String {
-            val dateTimeFormat = SimpleDateFormat(Constants.CUSTOM_DATE_FORMAT, Locale.getDefault())
+            val dateTimeFormat = SimpleDateFormat(Constants.CURRENT_DATE_FORMAT, Locale.getDefault())
             val currentDate = Calendar.getInstance().time
             return dateTimeFormat.format(currentDate)
         }

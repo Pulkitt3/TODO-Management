@@ -8,6 +8,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.pulkit.todoapp.model.ToDoItem
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @Dao
 interface ToDoDao {
@@ -35,9 +37,8 @@ interface ToDoDao {
     @Query("SELECT * FROM todo_items ORDER BY title COLLATE NOCASE DESC")
     fun getAllZTOASortedItems(): LiveData<List<ToDoItem>>
 
-
-    @Query("SELECT * FROM todo_items ORDER BY CASE WHEN time = :date THEN 0 END,  time ASC")
-    suspend fun getItemsSortedByDay(date: String): List<ToDoItem>
+    @Query("SELECT * from todo_items where time LIKE :dateTime")
+    suspend fun getItemsSortedByDay(dateTime : String): List<ToDoItem>
 
     @Query("SELECT * FROM todo_items WHERE time = :date ORDER BY  time ASC")
     suspend fun getItemsSortedByYesterday(date: String): List<ToDoItem>
