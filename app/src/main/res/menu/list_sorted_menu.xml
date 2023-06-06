@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_sort_today"
 
+        android:title="@string/sort_today" />
+    <item
+        android:id="@+id/menu_sort_yesterday"
+        android:title="@string/sort_yesterday" />
+
+    <item
+        android:id="@+id/menu_sort_custom"
+        android:title="@string/sort_custom" />
     <item
         android:id="@+id/menu_sort_am"
         android:title="@string/sort_am"
@@ -16,6 +26,10 @@
     <item
         android:id="@+id/menu_sort_za"
         android:title="@string/sort_za" />
+
+    <item
+        android:id="@+id/menu_sort_clear"
+        android:title="@string/sort_clear" />
 
 
 </menu>

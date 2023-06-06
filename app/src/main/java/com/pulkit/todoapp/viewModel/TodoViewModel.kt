@@ -23,9 +23,29 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     val getAllAMSortedItems: LiveData<List<ToDoItem>> = repository.getAllAMSortedItems
     val getAllPMSortedItems: LiveData<List<ToDoItem>> = repository.getAllPMSortedItems
     val getAllZTOASortedItems: LiveData<List<ToDoItem>> = repository.getAllZTOASortedItems
-
-
     val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    private val _itemsSortedByDay = MutableLiveData<List<ToDoItem>>()
+    private val _itemsSortedByYesterday = MutableLiveData<List<ToDoItem>>()
+    private val _itemsSortedByRange = MutableLiveData<List<ToDoItem>>()
+    val itemsSortedByDay: LiveData<List<ToDoItem>> = _itemsSortedByDay
+    val itemsSortedByYesterday: LiveData<List<ToDoItem>> = _itemsSortedByYesterday
+    val itemsSortedByRange: LiveData<List<ToDoItem>> = _itemsSortedByRange
+
+
+    fun getItemsSortedByDay(dateTime: String) = viewModelScope.launch(Dispatchers.IO) {
+        _itemsSortedByDay.postValue(repository.getItemsSortedByDay(dateTime))
+    }
+
+    fun getItemsSortedByYesterday(dateTime: String) = viewModelScope.launch(Dispatchers.IO) {
+        _itemsSortedByYesterday.postValue(repository.getItemsSortedByYesterday(dateTime))
+    }
+
+    fun getItemsByDateRange(fromDay: String, toDay: String) =
+        viewModelScope.launch(Dispatchers.IO) {
+            _itemsSortedByRange.postValue(repository.getItemsByDateRange(fromDay, toDay))
+
+        }
 
     fun checkIfDatabaseEmpty(toDoData: List<ToDoItem>) {
         emptyDatabase.value = toDoData.isEmpty()

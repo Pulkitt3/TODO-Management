@@ -26,12 +26,23 @@ interface ToDoDao {
     @Query("SELECT * FROM todo_items ORDER BY CASE WHEN timeType = 'AM' THEN 0 ELSE 1 END, time ASC")
     fun getAllAMSortedItems(): LiveData<List<ToDoItem>>
 
-    @Query("SELECT * FROM todo_items ORDER BY CASE WHEN timeType = 'PM' THEN 1 ELSE 0 END, time ASC")
+    @Query("SELECT * FROM todo_items ORDER BY CASE WHEN timeType = 'PM' THEN 0 ELSE 1 END, time ASC")
     fun getAllPMSortedItems(): LiveData<List<ToDoItem>>
 
-    @Query("SELECT * FROM todo_items ORDER BY title ASC")
+    @Query("SELECT * FROM todo_items ORDER BY title COLLATE NOCASE ASC")
     fun getAllATOZSortedItems(): LiveData<List<ToDoItem>>
 
-    @Query("SELECT * FROM todo_items ORDER BY title DESC")
+    @Query("SELECT * FROM todo_items ORDER BY title COLLATE NOCASE DESC")
     fun getAllZTOASortedItems(): LiveData<List<ToDoItem>>
+
+
+    @Query("SELECT * FROM todo_items ORDER BY CASE WHEN time = :date THEN 0 END,  time ASC")
+    suspend fun getItemsSortedByDay(date: String): List<ToDoItem>
+
+    @Query("SELECT * FROM todo_items WHERE time = :date ORDER BY  time ASC")
+    suspend fun getItemsSortedByYesterday(date: String): List<ToDoItem>
+
+    @Query("SELECT * FROM todo_items WHERE time BETWEEN :startDay AND :endDay ORDER BY time ASC")
+    suspend fun getItemsByDateRange(startDay: String, endDay: String): List<ToDoItem>
+
 }

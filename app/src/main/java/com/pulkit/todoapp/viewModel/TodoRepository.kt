@@ -12,8 +12,20 @@ class TodoRepository(private val todoDao: ToDoDao) {
     val getAllZTOASortedItems: LiveData<List<ToDoItem>> = todoDao.getAllZTOASortedItems()
 
 
+    suspend fun getItemsSortedByDay(dateTime: String): List<ToDoItem> {
+        return todoDao.getItemsSortedByDay(dateTime)
+    }
+
+    suspend fun getItemsSortedByYesterday(dateTime: String): List<ToDoItem> {
+        return todoDao.getItemsSortedByYesterday(dateTime)
+    }
+
     suspend fun insert(todoItem: ToDoItem) {
         todoDao.insert(todoItem)
+    }
+
+    suspend fun getItemsByDateRange(startDate: String, endDate: String): List<ToDoItem> {
+        return todoDao.getItemsByDateRange(startDate, endDate)
     }
 
     suspend fun update(todoItem: ToDoItem) {

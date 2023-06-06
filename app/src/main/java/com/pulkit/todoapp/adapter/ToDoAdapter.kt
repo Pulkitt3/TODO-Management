@@ -2,17 +2,22 @@ package com.pulkit.todoapp.adapter
 
 import android.graphics.Color
 import android.graphics.Paint
+import android.icu.text.CaseMap.Title
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.pulkit.todoapp.databinding.ItemTodoBinding
 import com.pulkit.todoapp.model.Constants
 import com.pulkit.todoapp.model.ToDoItem
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 
 class ToDoAdapter(private val listener: OnItemClickListener) :
@@ -33,14 +38,12 @@ class ToDoAdapter(private val listener: OnItemClickListener) :
                 binding.textTitle.paintFlags =
                     binding.textTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
             }
-            val timeToCompare = item.time + ":" + item.timeType
-            val isBeforeCurrent = isTimeBeforeCurrent(timeToCompare)
-            if (isBeforeCurrent && !item.isCompleted) {
-                binding.textTitle.setTextColor(Color.RED)
-                binding.textStatus.visibility = View.VISIBLE
-            } else {
-                binding.textTitle.setTextColor(Color.BLACK)
-            }
+            isTimeBeforeCurrent(
+                item.time,
+                item.isCompleted,
+                binding.textTitle,
+                binding.textStatus
+            )
             binding.checkboxComplete.setOnCheckedChangeListener { _, _ ->
                 listener.onItemClick(item)
             }
@@ -55,31 +58,28 @@ class ToDoAdapter(private val listener: OnItemClickListener) :
         }
     }
 
+    fun getCurrentDate(): String {
+        val dateTimeFormat = SimpleDateFormat(Constants.CUSTOM_DATE_FORMAT, Locale.getDefault())
+        val currentDate = Calendar.getInstance().time
+        return dateTimeFormat.format(currentDate)
+    }
 
-    fun isTimeBeforeCurrent(time: String): Boolean {
-        val currentTime = Calendar.getInstance()
-        val compareTime = Calendar.getInstance()
+    fun isTimeBeforeCurrent(time: String, isCompleted: Boolean, title: TextView, status: TextView) {
+        val currentTime = getCurrentDate()
+        val formatter = SimpleDateFormat(Constants.CUSTOM_DATE_FORMAT, Locale.getDefault())
 
-        val parts = time.split(":")
-        var hour = parts[0].toInt()
-        val minute = parts[1].toInt()
-        val amPm = parts[2].trim()
-
-        // Adjust the hour based on AM/PM
-        if (amPm.equals(Constants.PM, ignoreCase = true) && hour != 12) {
-            hour += 12
-        } else if (amPm.equals(Constants.AM, ignoreCase = true) && hour == 12) {
-            hour = 0
+        val dateTime = formatter.parse(time)
+        val currentDateTime = formatter.parse(currentTime)
+        if (dateTime != null && currentDateTime != null) {
+            if (dateTime.after(currentDateTime)) {
+                title.setTextColor(Color.BLACK)
+            } else if (dateTime.before(currentDateTime) && !isCompleted) {
+                title.setTextColor(Color.RED)
+                status.visibility = View.VISIBLE
+            } else {
+                title.setTextColor(Color.BLACK)
+            }
         }
-
-        // Set the compareTime to the desired time
-        compareTime[Calendar.HOUR_OF_DAY] = hour
-        compareTime[Calendar.MINUTE] = minute
-        compareTime[Calendar.SECOND] = 0
-        compareTime[Calendar.MILLISECOND] = 0
-
-        // Compare the times
-        return compareTime.before(currentTime)
     }
 
 

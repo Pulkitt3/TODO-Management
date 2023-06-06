@@ -10,7 +10,8 @@
     <string name="am">AM</string>
     <string name="update">Update</string>
     <string name="please_select_greater_than_current_time">Please select greater than current time</string>
-    <string name="successfully_added">Successfully added!</string>
+    <string name="successfully_added">Added Successfully</string>
+    <string name="successfully_updated">Updated Successfully</string>
     <string name="please_fill_out_all_fields">Please fill out all fields.</string>
     <string name="warning">Warning</string>
     <string name="delete_header_start">Do you want to delete</string>
@@ -20,4 +21,16 @@
     <string name="sort_za">Sort by Z-A</string>
     <string name="sort_az">Sort by A-Z</string>
     <string name="sort_clear">Clear filter</string>
+    <string name="sort_today">Today</string>
+    <string name="sort_yesterday">Yesterday</string>
+    <string name="sort_custom">Custom Date</string>
+    <string name="to_date">To Date</string>
+    <string name="from_date">From Date</string>
+    <string name="select_date">Select Date</string>
+    <string name="input_field_should_not_be_empty">Input field should not be empty</string>
+    <string name="no_item_found">No To-Do Item yet…!!\n\n Click on Plus button for add to do item</string>
+    <string name="continue_">Continue</string>
+    <string name="ok">Ok</string>
+    <string name="pending">Pending</string>
+    <string name="complete">Complete</string>
 </resources>

@@ -13,7 +13,7 @@
             />
         <path
             android:pathData="M0 0V160H412V0"
-            android:fillColor="#FEF7FF"
+            android:fillColor="@color/tolbar_color"
             />
     </group>
 </vector>

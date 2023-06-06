@@ -11,4 +11,5 @@
     <color name="colorPrimary">#6200EA</color>
     <color name="colorPrimaryDark">#5502C8</color>
     <color name="colorAccent">#9D46FF</color>
+    <color name="tolbar_color">#FEF7FF</color>
 </resources>

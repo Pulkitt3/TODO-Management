@@ -11,12 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:elevation="4dp"
         android:padding="8dp">
 
         <CheckBox
             android:id="@+id/checkbox_complete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@android:color/transparent"
             android:checked="@{item.completed}"
             android:clickable="false"
             android:focusable="false" />
@@ -33,14 +37,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{item.title}"
+                android:fontFamily="@font/rubik_medium"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                />
 
             <TextView
                 android:id="@+id/text_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pending"
+                android:text="@string/pending"
+                android:fontFamily="@font/rubik_regular"
                 android:textSize="12sp"
                 android:visibility="gone" />
 
@@ -56,12 +62,13 @@
 
             <TextView
                 android:id="@+id/text_time"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="@{item.time+' '+item.timeType}"
+                android:layout_marginEnd="8dp"
+                android:text="@{item.time}"
+                android:fontFamily="@font/rubik_regular"
                 android:textAlignment="textEnd"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
