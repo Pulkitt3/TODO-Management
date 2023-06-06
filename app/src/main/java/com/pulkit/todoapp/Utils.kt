@@ -88,7 +88,12 @@ class Utils {
             val hour: String
             val minutePeriod = parts[4].uppercase()
             hour = if (minutePeriod.equals(Constants.AM, ignoreCase = true)) {
-                "00"
+                if (hourSplitter[0] == "12"){
+                    "00"
+                }else{
+                    hourSplitter[0]
+                }
+
             } else {
                 hourSplitter[0]
 
